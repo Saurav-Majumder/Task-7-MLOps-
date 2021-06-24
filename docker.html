@@ -1,0 +1,147 @@
+<style>
+        body{
+
+                background-image: url("https://ak.picdn.net/shutterstock/videos/4914788/thumb/1.jpg");
+        }
+
+        #container{
+                padding: 5%;
+                border-radius: 5px;
+        }
+
+        #head {
+                 font-family: Roboto;
+                 color: rgb(10, 1, 1);
+                 bottom: -20%;
+                 position: relative;
+                 width: 15px;
+                 height: 15px;
+                 margin: 0 auto;
+                 right: 2%;
+
+         }
+
+        #screen{
+                background:#E9967A;
+                width: 95%;
+                height: 550px;
+                border-radius: 2%;
+                margin: 0 auto;
+                padding: 1px;
+                opacity: 0.6;
+                overflow:scroll;
+        }
+
+        #userInput {
+                 margin-top: 20px;
+                 padding: 10px;
+                 margin-left:50px;
+         }
+        #in {
+                 float: left;
+                 width: 30%;
+                 font-size: 18px;
+                 vertical-align: middle;
+                 box-sizing: border-box;
+                 background-color: #000;
+                 color: #ffffff;
+                 border: none;
+      
+		opacity: inherit;
+         }
+
+     #textBox {
+      width: auto;
+      font-size: 18px;
+      vertical-align: middle;
+      background-color: #000000;
+      color: #f2f3ed;
+      border: none;
+      box-sizing: border-box;
+      opacity: inherit;
+    }
+
+    #out {
+      padding-left: 10px;
+      font-size: 18px;
+      color: white;
+      text-align: justify;
+      margin-top: 5px;
+    }
+
+    #out ul {
+      list-style: none;
+    }
+
+    #out li,
+    th,
+    td {
+      padding-right: 45px;
+      padding-left: 25px;
+      padding-top: 7px;
+      text-align: left;
+    }
+    #bar {
+      text-align: center;
+      width: 95%;
+      height: 25px;
+      background-color: #FFFFFF;
+      margin: 0 auto;
+      font-family: Roboto;
+      padding: auto;
+      float: none;
+      border-radius: 5px;
+    }
+
+    .font {
+      color: #F8F8FF;
+      font-family: 'Algerian';
+
+      font-color:maroon;
+      font-size: 15px;
+      text-align: left;
+      position: static;
+    }
+
+ </style>
+
+<script>
+function command(e) {
+
+       if (e.keyCode == 13) {
+
+
+        document.getElementById('out').innerHTML = "";
+        var i = document.getElementById("textBox").value;
+        var req = new XMLHttpRequest();
+        req.open("GET", "http://192.168.43.107/cgi-bin/mycode.py?x=" + i, false);
+        req.send();
+        var output = req.responseText;
+        document.getElementById("out").innerHTML = output;
+
+
+        document.getElementById('textBox').value = "";
+        }
+}
+
+</script>
+<div id="container">
+
+    <div id="bar">
+        <h2>Redhat Linux </h2>
+      <div id="red">
+      </div>
+      <div id="yellow">
+      </div>
+      <div id="green">
+     </div>
+ </div>
+<div id="userInput">
+    <input type="text" value="root@localhost:~$" id="in" size="25" readonly="readonly">
+    <input type="text" id="textBox" onkeypress="command(event)" placeholder="Enter your command" size="40" autofocus>
+  </div>
+
+  <pre>
+    <div id="out"> </div>
+    </pre>
+</div>
